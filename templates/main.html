@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实时新闻</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link href="../static/css/main.css" rel="stylesheet"/>
+
+
+</head>
+<body background="../static/css/skr.png" class="bgp">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=28468969&auto=1&height=66"></iframe>
+    <div id="title">站长推荐</div>
+    <div id="c1" style="overflow: scroll;overflow-x:hidden">
+            <table>
+                <tr class="name">加载中..请稍后</tr>
+            </table>
+    </div>
+    <div id="c3">加载中..请稍后</div>
+    <img src="../static/css/Akeno.jpeg" class="bgp2">
+</body>
+<script>
+    function gettime(){
+        $.ajax({
+            url:"/time",
+            timeout:10000,
+            success:function(data)
+            {
+                $("#c3").html(data)
+            },error:function () {
+            }
+        })
+    }
+    function get_c1_data(){
+        $.ajax({
+            url:"/c1",
+            success:function(data)
+            {
+<!--                $("#title").text(data.data0[0])-->
+                var html = "<table>";
+                for(var i=0;i<data.length;i++){  //遍历data数组
+                    var ls = data[i];
+                    var url = ls[1];
+                    html +="<tr><th class='name'><a target='_blank' href='"+url+"' title='"+ls[0]+"' style='color: #FFFFFF;text-decoration: none;'>"+ls[0]+"</a></th></tr>";
+                }
+                $("#c1").html(html);
+            },error:function () {
+            }
+        })
+    }
+    setInterval(gettime,1000)
+    get_c1_data()
+</script>
+<footer>
+    {% block footer %}
+        <small id="c2"> &copy; 2023 <a href="https://github.com/Sojiron777" title="Written by Sojiro">Sojiro</a> /
+            <a href="https://github.com/Sojiron777" title="Fork me on GitHub">GitHub</a> /
+            <a href="https://github.com/Sojiron777" title="A HelloFlask project">flasktest</a>
+        </small>
+    {% endblock %}
+</footer>
+{% block scripts %}{% endblock %}
+</html>

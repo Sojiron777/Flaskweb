@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>-->
+<!--    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>-->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<h1>摸摸</h1>
+<h3>实时新闻</h3>
+<button>点我刷新</button>
+<script>
+    $("button").click(function(){
+        $.ajax({
+            url:"/ajax",
+            type:"POST",
+            data:{"name":"李四","score":99},
+            success:function(d)
+            {
+                $("h1").html("摸摸唱:" + d )
+            },error:function () {
+                alert("发送ajax请求失败")
+            }
+        })
+    })</script>
+</body>
+</html>

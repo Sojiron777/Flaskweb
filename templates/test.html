@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>测试页面</title>
+　　<link rel="stylesheet" href="./css/xxx.css"/>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(function () {
+            //测试get接口
+            $("#btnget").on('click', function () {
+                $.ajax({
+                    type: 'GET',
+                    url:'http://127.0.0.1:8089/api/get',
+                    data:{name:'zs',age:18},
+                    success:function(res){
+                        console.log(res);
+                    }
+                })
+            })
+            //测试post接口
+            $("#btnpost").on('click', function () {
+                $.ajax({
+                    type: 'POST',
+                    url:'http://127.0.0.1:8089/api/post',
+                    data:{name:'李四',age:18},
+                    success:function(res){
+                        console.log(res);
+                    }
+                })
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <button id="btnget">get</button>
+    <button id="btnpost">post</button>
+</body>
+
+</html>
